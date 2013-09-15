@@ -15,6 +15,7 @@ public class Virenscanner extends Thread {
 	
 	@Override
 	public void run() {
+		
 		//Test-Liste mit Pseudo-Dateinamen
 		ArrayList<String> file = new ArrayList(); 
 		file.add("v1");
