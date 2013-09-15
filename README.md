@@ -1,3 +1,3 @@
 NebenlaeufigeProg
 ===========================
-Einige TestKlassen für verschiedene Praktiken der Nebenläufigen Programmierung
+Einige TestKlassen für verschiedene Praktiken der nebenläufigen Programmierung
