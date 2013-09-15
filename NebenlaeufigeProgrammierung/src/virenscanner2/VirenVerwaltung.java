@@ -10,13 +10,12 @@ public class VirenVerwaltung {
 	private Object warteAufNeuesElement = new Object();
 	
 	
-	public synchronized void registriereInfizierteDatei(String datei) {
+	public void registriereInfizierteDatei(String datei) {
 		while (zaehler+1 == dateien.length) {
 			try {
-
-				warteAufFreienPufferPlatz.wait();
-
-				
+				synchronized (warteAufFreienPufferPlatz) {
+					warteAufFreienPufferPlatz.wait();
+				}
 			}
 			catch (InterruptedException e) {
 				e.printStackTrace();
@@ -25,7 +24,9 @@ public class VirenVerwaltung {
 		dateien[zaehler] = datei;
 		zaehler++;
 		System.out.println("+++> "+datei);
-		warteAufNeuesElement.notifyAll();
+		synchronized (warteAufNeuesElement) {
+			warteAufNeuesElement.notifyAll();
+		}
 	}
 	
 
@@ -33,9 +34,9 @@ public class VirenVerwaltung {
 
 		while (zaehler == 0) {
 			try {
-
-				warteAufNeuesElement.wait();
-
+				synchronized (warteAufNeuesElement) {
+					warteAufNeuesElement.wait();
+				}
 			}
 			catch (InterruptedException e) {
 				e.printStackTrace();
@@ -43,7 +44,9 @@ public class VirenVerwaltung {
 		}
 		zaehler--;
 		String result = dateien[zaehler];
-		warteAufFreienPufferPlatz.notifyAll();
+		synchronized (warteAufFreienPufferPlatz) {
+			warteAufFreienPufferPlatz.notifyAll();
+		}
 		System.out.println("---> "+result);
 		return result;
 	}
