@@ -11,10 +11,10 @@ public class Puffer {
 		lesePosition = 0;
 	}
 	
+	//Getter für sysouts in Erzeuger und Verbraucher hinzugefügt
 	public synchronized int getLesePos() {
 		return lesePosition;
 	}
-	
 	public synchronized int getSchreibPos() {
 		return schreibPosition;
 	}
