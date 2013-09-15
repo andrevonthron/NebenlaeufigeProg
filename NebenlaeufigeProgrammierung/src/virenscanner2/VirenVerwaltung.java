@@ -30,7 +30,7 @@ public class VirenVerwaltung {
 	}
 	
 
-	public synchronized String holeZuLoeschendeDatei() {
+	public String holeZuLoeschendeDatei() {
 
 		while (zaehler == 0) {
 			try {
