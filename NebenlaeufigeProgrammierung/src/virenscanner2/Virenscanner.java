@@ -18,9 +18,7 @@ public class Virenscanner extends Thread {
 		
 		//Test-Liste mit Pseudo-Dateinamen
 		ArrayList<String> file = new ArrayList(); 
-		file.add("v1");
-		file.add("v2");
-		file.add("t1");
+		file.add(pfad);
 		for (String f : file) {
 			if (f.contains("v"))
 				verwaltung.registriereInfizierteDatei(f);
